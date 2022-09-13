@@ -1,0 +1,13 @@
+#canv{
+    background: blue;
+    height: 100%;
+    width: 100%;
+    top: ;
+    left: 0;
+    border-radius: 20px;
+}
+
+body{
+    background: white;
+    text-align: center;
+}
