@@ -1,8 +1,8 @@
 [LIVE DEMO](https://canvasparticlecannonfx.herokuapp.com/)
 
-# Canvas Particle Cannon FX
-![Preview](preview.gif)
-This is a simple project where I created a "cannon" that shoots particles. Simply by animating particles with trig functions and requestAnimationFrame.
+# Danny's Pew Pew
+![Preview](dannyspewpew.gif)
+This is a simple galaga type game in HTML canvas with JavaScript
 
 ## Launching It
 1. `npm i`
