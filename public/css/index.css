@@ -1,13 +1,16 @@
 #canv{
-    background: blue;
-    height: 100%;
-    width: 100%;
+    background: black;
+    height: auto;
+    width: auto;
     top: ;
     left: 0;
     border-radius: 20px;
+    transform: rotate(-90deg) translateX(-100%) scaleY(260%) scaleX(200%);
 }
 
 body{
-    background: white;
+    background: black;
+    color: white;
     text-align: center;
+    overflow: hidden;
 }
