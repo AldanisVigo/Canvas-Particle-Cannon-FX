@@ -59,7 +59,7 @@ class Enemy {
     }
 
     update(t){
-        console.log("Last t: " + this.lastTime)
+        //console.log("Last t: " + this.lastTime)
         if(this.lastTime > (360/2)){
             this.x -= 0.1
         }
@@ -109,7 +109,7 @@ class Tracer {
 
     let t = 0
     //FX update loop
-    function effectsLoop(){
+    const effectsLoop = () => {
         // console.log("Loop is running")
 
         //Clear the canvas
@@ -196,6 +196,11 @@ class Tracer {
                     //Destroy both
                     enemies.splice(enemies.indexOf(enemy),1)
                     particles.splice(particles.indexOf(currentParticle),1)
+                    let boom = new Audio('sounds/boom.mp3')
+                    boom.play()
+                    boom.onended = () => {
+                        delete boom
+                    }
                     ++score;
                     scoreElem.innerText = `Score : ${score}`  //Update the score
                     enemies.push(new Enemy(canvas.width,canvas.height / 2)) //Create a new enemy
@@ -213,29 +218,54 @@ class Tracer {
             // console.table(particles)
             // console.table(tracers)
         }
+        console.log(loopPaused)
 
         if(!loopPaused){ //As long as the loop is not paused
             requestAnimationFrame(effectsLoop) //request another frame
         }else{ //Otherwise
+
             console.log("Loop is paused") //Well, tick tok
+            let pauseImg = new Image()
+            pauseImg.width = 200
+            pauseImg.height = 50
+            pauseImg.onload = () => {
+                // ctx.translate(-(canvas.width / 2),-(canvas.height / 2))
+                // ctx.rotate(Math.PI / 4)
+                ctx.drawImage(pauseImg,canvas.width / 2 - 50,canvas.height / 2 - 25,100,50)
+                // ctx.rotate(Math.PI / 4)
+                // ctx.translate(canvas.width / 2,canvas.height / 2)
+            }
+            pauseImg.src = 'img/pause.png'
         }
     }
 
     //Start the cannon half way down the canvas
     let currentY = canvas.height / 2
 
+    var pauseMusic = new Audio('sounds/pause.mp3')
+    pauseMusic.pause()
+
     //Listen for keyboard input
     window.onkeydown = (e) => {
         switch(e.key){
             case 'Escape': //If the user presses the escape key
-                gamePaused = true //pause the loop
+                console.log("PAUSING")
+                pauseMusic.play()
+                loopPaused = true //pause the loop
                 break
             case 'Enter': //If the use presses enter
-                gamePaused = false //unpause the loop
+                console.log("STARTING")
+                pauseMusic.pause()
+                loopPaused = false //unpause the loop
                 effectsLoop() // off you go
                 break
             case ' ': //If the user presses the spacebar
                 particles.push(new Bullet(currentY)) //shoot another particle
+                var pew = new Audio('sounds/pew.mp3')
+                pew.play()
+                pew.onended = () => {
+                    delete pew
+                }
                 break
             case 'q': //If the user presses que q key
                 particles = [] //Reset the particles
