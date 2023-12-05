@@ -1,4 +1,3 @@
-[LIVE DEMO](https://canvasparticlecannonfx.herokuapp.com/)
 
 # Danny's Pew Pew
 ![Preview](dannyspewpew.gif)
