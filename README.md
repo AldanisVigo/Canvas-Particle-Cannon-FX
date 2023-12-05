@@ -1,6 +1,8 @@
 
 # Danny's Pew Pew
+
 ![Preview](dannyspewpew.gif)
+
 This is a simple galaga type game in HTML canvas with JavaScript
 
 ## Launching It
